@@ -1,3 +1,6 @@
+
+
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -22,7 +25,8 @@ public class ControleurLettres implements EventHandler<ActionEvent> {
      * @param vuePendu vue du jeu
      */
     ControleurLettres(MotMystere modelePendu, Pendu vuePendu){
-        // A implémenter
+        this.modelePendu = modelePendu;
+        this.vuePendu = vuePendu;
     }
 
     /**
@@ -32,6 +36,29 @@ public class ControleurLettres implements EventHandler<ActionEvent> {
      */
     @Override
     public void handle(ActionEvent actionEvent) {
-        // A implémenter
+        Button boutonClique = (Button) actionEvent.getSource(); // get source stock le bouton du clavier 
+        String texteButton = boutonClique.getText(); // get text permet d'afficher quel bouton et utiliser 
+        char lettre = texteButton.charAt(0);  // convertir String en char 
+
+        modelePendu.essaiLettre(lettre); // constructeur 
+        vuePendu.majAffichage(); // contructeur 
+
+        if (modelePendu.gagne()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+             alert.setTitle("Victoire !");
+             alert.setHeaderText(null); // pas obliger 
+             alert.setContentText("Bravo, vous avez gagné !");
+             alert.showAndWait(); // attend que l'utilisateur click sur ok pas obliger 
+
+        }else if (modelePendu.perdu()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Défaite");
+            alert.setHeaderText(null);
+            alert.setContentText("t'es une merde mec recommence");
+            alert.showAndWait();
+
+        }
+
+
     }
 }
