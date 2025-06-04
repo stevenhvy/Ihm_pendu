@@ -10,9 +10,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.control.Tooltip;
-import javafx.scene.control.TitledPane;
-import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar.ButtonData ;
@@ -190,6 +187,17 @@ public class Pendu extends Application {
         alert.setTitle("Attention");
         return alert;
     }
+
+
+    public Alert popUpReglesDuJeu(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Règles du jeu");
+        alert.setHeaderText("But du jeu :");
+        alert.setContentText("Trouve le mot mystère en essayant des lettres.\n" +
+                         "Attention, tu as un nombre limité d'erreurs !");
+     return alert;
+}
+
         
     public Alert popUpReglesDuJeu(){
         // A implementer
