@@ -39,8 +39,12 @@ public class Chronometre extends Text{
         this.timeline = new Timeline(this.keyFrame);
          this.timeline.setCycleCount(Animation.INDEFINITE); // Lance une boucle infinie qui le fait
 
+         
+
         
     }
+
+    
 
     /**
      * Permet au controleur de mettre à jour le text
