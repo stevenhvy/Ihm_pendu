@@ -53,4 +53,51 @@ public class ControleurChronometre implements EventHandler<ActionEvent> {
         this.tempsEcoule = 0;
     this.tempsPrec = System.currentTimeMillis(); // on redémarre proprement
     }
+
+
+    public BorderPane menuMonPanier() {
+    BorderPane root = new BorderPane();
+
+    // 🔠 Titre
+    Label titre = new Label("Mon panier");
+    titre.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+    titre.setPadding(new Insets(10));
+    titre.setAlignment(Pos.CENTER);
+
+    // 🧱 TableView
+    TableView<Livre> table = new TableView<>();
+
+    TableColumn<Livre, String> colNom = new TableColumn<>("Nom livre");
+    colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+
+    TableColumn<Livre, String> colAuteur = new TableColumn<>("Auteur");
+    colAuteur.setCellValueFactory(new PropertyValueFactory<>("auteur"));
+
+    TableColumn<Livre, Integer> colQte = new TableColumn<>("Quantité");
+    colQte.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+
+    TableColumn<Livre, Double> colPrix = new TableColumn<>("Prix unitaire");
+    colPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+
+    TableColumn<Livre, Void> colSupprimer = new TableColumn<>("Supprimer");
+    colSupprimer.setCellFactory(param -> new TableCell<>() {
+        private final Button btn = new Button("❌");
+
+        {
+            btn.setOnAction(e -> {
+                Livre livre = getTableView().getItems().get(getIndex());
+                table.getItems().remove(livre);
+            });
+        }
+
+        @Override
+        protected void updateItem(Void item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty) {
+                setGraphic(null);
+            } else {
+                setGraphic(btn);
+            }
+        }
+    });
 }
